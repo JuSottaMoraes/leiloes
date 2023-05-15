@@ -27,7 +27,6 @@ public class ListagemView extends javax.swing.JFrame {
         initComponents();
         listaProdutos();
     }
-
         
 
     /**
@@ -155,14 +154,13 @@ public class ListagemView extends javax.swing.JFrame {
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
         // TODO add your handling code here:
-          //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+          VendasView vendas = new VendasView(); 
+        vendas.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         // TODO add your handling code here:
         
-         
         boolean status;
         int resposta = 0;
        String id = id_produto_venda.getText();
