@@ -9,24 +9,33 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author juliana
  */
-public class ConectaDao {
-    public Connection connectDB(){
-        Connection conn = null;
-        
+public class ConectaDAO {
+
+    Connection conn;
+
+    public Connection conectar() {
+
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/j18091979c");
-            
-        } catch (SQLException erro){
+
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/leiloes", "root", "j18091979c");
+
+        } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
         }
         return conn;
     }
-    
+
+    public Connection getConexao() {
+
+        return conn;
+
+    }
+
+    public void desconectar() {
+       
+    }
 }
