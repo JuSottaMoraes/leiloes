@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class CadastroView extends javax.swing.JFrame {
 
-  
     /**
      * Creates new form CadastroView
      */
@@ -154,13 +153,13 @@ public class CadastroView extends javax.swing.JFrame {
         ListagemView listagem = new ListagemView(); 
         listagem.setVisible(true);
     }//GEN-LAST:event_btnProdutosActionPerformed
-
+    
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // TODO add your handling code here:
         boolean status;
         int resposta;
 
-        ProdutosDTO produto = new ProdutosDTO ();
+        ProdutosDTO produto= new ProdutosDTO ();
         ProdutosDAO dao = new ProdutosDAO();
         
         produto.setNome(txtNome.getText());

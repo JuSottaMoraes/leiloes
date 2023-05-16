@@ -27,13 +27,16 @@ public class ProdutosDAO {
         
         
         ConectaDAO bd = new ConectaDAO();
-        bd.conectar();   
+        bd.conectar(); 
         
+        String query = "select IdProdutosDAO, nome from status where statusProduto = 'Vendido'";
+      
+         
         try {
-            prep = bd.getConexao().prepareStatement ("INSERT INTO  Produtos (nome, valor, status) values (?,?,?)");
+            prep = bd.getConexao().prepareStatement ("INSERT INTO  StatusProduto (nome, valor, status) values (?,?,?)");
             prep.setString(1, func.getNome());
             prep.setInt(2, func.getValor());
-            prep.setString(3, func.getStatus());
+            prep.setString(3,func.getStatus());
             status = prep.executeUpdate();
             return status; //retornar 1 
            
@@ -45,14 +48,13 @@ public class ProdutosDAO {
        
     }
      
-     public List<ProdutosDTO> ListaProdutos() throws SQLException {
+     public List<ProdutosDTO> ListaStatusProduto() throws SQLException {
          
       ConectaDAO bd = new ConectaDAO();
         bd.conectar();
 
-        String query = "select * from produtos";
-        {
-            ArrayList<ProdutosDTO> produtos;
+        String query = "select * from Produtos where status = Vendido";       {
+            ArrayList<ProdutosDTO>StatusProduto;
             try ( PreparedStatement consulta = bd.getConexao().prepareStatement(query)) {
                 ResultSet rs = consulta.executeQuery();
                List<ProdutosDTO> listagem = new ArrayList<>();
@@ -61,7 +63,7 @@ public class ProdutosDAO {
                     prod.setId(rs.getInt("id"));
                     prod.setNome(rs.getString("nome"));
                     prod.setValor(rs.getInt("valor"));
-                    prod.setStatus(rs.getString("status"));
+                    prod.setStatus(rs.getString("status Vendido"));
                     listagem.add(prod);
                 }
                 return listagem;
@@ -72,15 +74,12 @@ public class ProdutosDAO {
      }
 
     public void venderProduto(int parseInt) {
-         int status;
-        
+        int status;
+
         ConectaDAO bd = new ConectaDAO();
         bd.conectar();
 
-      
-        }
-
     }
-
+}
 
    

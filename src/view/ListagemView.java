@@ -18,17 +18,14 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListagemView extends javax.swing.JFrame {
 
-    private Object dao;
-
     /**
      * Creates new form ListagemView
      */
     public ListagemView() {
         initComponents();
-        listaProdutos();
+        listaStatusProduto();
     }
-        
-
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -154,7 +151,8 @@ public class ListagemView extends javax.swing.JFrame {
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
         // TODO add your handling code here:
-          VendasView vendas = new VendasView(); 
+    
+        VendasView vendas = new VendasView();
         vendas.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
@@ -167,7 +165,7 @@ public class ListagemView extends javax.swing.JFrame {
         
         ProdutosDAO produtosdao = new ProdutosDAO();
         produtosdao.venderProduto(Integer.parseInt(id));
-        listaProdutos();
+        listaStatusProduto();
         
         switch (resposta) {
             case 1:
@@ -192,10 +190,11 @@ public class ListagemView extends javax.swing.JFrame {
           // TODO add your handling code here:
            this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
-  public void listaProdutos()  {
+  
+    public void listaStatusProduto()  {
         try {
             ProdutosDAO produtosdao = new ProdutosDAO();
-            List<ProdutosDTO> listagem = produtosdao.ListaProdutos();
+            List<ProdutosDTO> listagem = produtosdao.ListaStatusProduto();
 
             DefaultTableModel tabelaFuncionarios = (DefaultTableModel) jTablelistaProdutos.getModel();
             jTablelistaProdutos.setRowSorter(new TableRowSorter(tabelaFuncionarios));
@@ -260,7 +259,7 @@ public class ListagemView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTablelistaProdutos;
+    public static javax.swing.JTable jTablelistaProdutos;
     // End of variables declaration//GEN-END:variables
 
 }

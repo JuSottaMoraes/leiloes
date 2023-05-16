@@ -34,4 +34,8 @@ public class ConectaDAO {
         return conn;
 
     }
+
+    public void desconectar() {
+       
+    }
 }

@@ -4,6 +4,10 @@
  */
 package view;
 
+import beans.ProdutosDTO;
+import dao.ProdutosDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juliana
@@ -33,7 +37,7 @@ public class VendasView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
-        txtVendido = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JTextField();
         btnAcessar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +51,7 @@ public class VendasView extends javax.swing.JFrame {
 
         jLabel4.setText("Status:");
 
-        txtVendido.setText("Vendido");
+        txtStatus.setText("Vendido");
 
         btnAcessar.setText("Acessar");
         btnAcessar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +85,7 @@ public class VendasView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(55, 55, 55)
-                                .addComponent(txtVendido)))))
+                                .addComponent(txtStatus)))))
                 .addGap(272, 272, 272))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(243, 243, 243)
@@ -104,7 +108,7 @@ public class VendasView extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtVendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(btnAcessar)
                 .addGap(84, 84, 84))
@@ -130,6 +134,36 @@ public class VendasView extends javax.swing.JFrame {
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
         // TODO add your handling code here:
+        boolean status;
+        int resposta;
+
+        ProdutosDTO statusProduto= new ProdutosDTO ();
+        ProdutosDAO dao = new ProdutosDAO();
+        
+        statusProduto.setNome(txtNome.getText());
+        statusProduto.setValor(Integer.parseInt(txtValor.getText()));
+        statusProduto.setStatus(txtStatus.getText());
+        resposta = dao.salvar(statusProduto);
+        
+        resposta = dao.salvar(statusProduto);
+        switch (resposta) {
+            case 1:
+                JOptionPane.showMessageDialog(null, "Dados incluidos com sucesso");
+               
+                dispose(); //fecha tela de cadastro    
+                ListagemView listagem = new ListagemView();
+                listagem.setVisible(true);
+                break;
+
+            case 1062:
+                JOptionPane.showMessageDialog(null, "Id  já foi cadastrado");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Erro ao tentar inserir dados");
+                break;
+        }
+        ListagemView listagem = new ListagemView(); 
+        listagem.setVisible(true);
     }//GEN-LAST:event_btnAcessarActionPerformed
 
     /**
@@ -176,7 +210,7 @@ public class VendasView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtValor;
-    private javax.swing.JTextField txtVendido;
     // End of variables declaration//GEN-END:variables
 }
